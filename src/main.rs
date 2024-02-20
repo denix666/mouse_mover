@@ -27,11 +27,8 @@ async fn main() {
     let mouse = Mouse::new();
     let mut time_now: f64 = get_time();
     
-
     loop {
         clear_background(BLACK);
-
-        
 
         egui_macroquad::ui(|ctx| {
             egui::CentralPanel::default().show(&ctx, |ui| {
@@ -45,6 +42,7 @@ async fn main() {
 
         if get_time() - time_now > DELAY {
             let cur_mouse_position = mouse_position::mouse_position::Mouse::get_mouse_position();
+            
             match cur_mouse_position {
                 mouse_position::mouse_position::Mouse::Position { mut x, mut y } => {
                     match random_direction().unwrap() {
