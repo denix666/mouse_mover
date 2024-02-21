@@ -59,7 +59,6 @@ fn main() {
                                 Direction::Right => {x += 1},
                             };
                             mouse.mouse_move_to(x, y);
-                            mouse.mouse_up(MouseButton::Right);
                             mouse.key_up(Key::Control);
                         },
                         mouse_position::mouse_position::Mouse::Error => println!("Error getting mouse position"),
