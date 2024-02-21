@@ -53,12 +53,12 @@ jobs:
       run: |
         mv target/release/mouse_mover mouse_mover
         chmod 777 mouse_mover
-        tar cpfz mouse_mover_Darwin_x86_64.tar.gz mouse_mover
+        tar cpfz mouse_mover_darwin_x86_64.tar.gz mouse_mover
         
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-        files: mouse_mover_Darwin_x86_64.tar.gz
+        files: mouse_mover_darwin_x86_64.tar.gz
 
   win_build:
     runs-on: windows-latest
