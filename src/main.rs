@@ -3,7 +3,7 @@
 use std::time::{SystemTime, UNIX_EPOCH};
 use eframe::egui;
 use denlibs::random::{Direction, random_direction};
-use mouse_rs::Mouse;
+use enigo::*;
 
 const DELAY: u128 = 5000;
 
@@ -18,13 +18,14 @@ fn load_icon() -> eframe::IconData {
 fn main() {
     let mut time_now = get_time();
     let mut active = true;
-    let mouse = Mouse::new();
+    let mut mouse = Enigo::new();
     
     let mut title = String::from("Mouse mover v");
     title.push_str(env!("CARGO_PKG_VERSION"));
     let options = eframe::NativeOptions {
         initial_window_size: Some(egui::vec2(300.0, 80.0)),
         resizable: false,
+        default_theme: eframe::Theme::Dark,
         icon_data: Some(load_icon()),
         ..Default::default()
     };
@@ -57,7 +58,9 @@ fn main() {
                                 Direction::Left => {x -= 1},
                                 Direction::Right => {x += 1},
                             };
-                            mouse.move_to(x, y).expect("Unable to move mouse");
+                            mouse.mouse_move_to(x, y);
+                            mouse.mouse_up(MouseButton::Right);
+                            mouse.key_up(Key::Control);
                         },
                         mouse_position::mouse_position::Mouse::Error => println!("Error getting mouse position"),
                     }

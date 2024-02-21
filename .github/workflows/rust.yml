@@ -11,12 +11,12 @@ jobs:
 
     steps:
     - name: Prep
-      run: sudo apt-get install libasound-dev -y
+      run: sudo apt-get install libasound-dev libxdo-dev -y
 
     - name: Install rust
       uses: actions-rs/toolchain@v1
       with:
-        toolchain: stable
+        toolchain: 1.72.0
       
     - uses: actions/checkout@v3
     - name: Build
